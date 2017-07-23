@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>闭包的概念</title>
+</head>
+<body>
+    <div>
+        一、闭包的概念
+            1、能够读取其他函数内部变量的函数；
+            2、定义在一个函数内部的函数（ 由于在Javascript语言中，只有函数内部的子函数才能读取局部变量）。
+
+        四、闭包的用途
+            1、读取函数内部的变量
+            2、让这些变量的值始终保持在内存中
+
+    </div>
+</body>
+<script type="text/javascript">
+    window.onload = function(){
+        var name = "The Window";
+        var object = {
+        　　name : "My Object",
+        　　getNameFunc : function(){
+        　　　　return function(){
+        　　　　　　return this.name;
+        　　　　};
+        　　}
+        };
+        alert(object.getNameFunc()()); //空
+        
+
+        var name = "The Window";
+    　　var object = {
+    　　　　name : "My Object",
+    　　　　getNameFunc : function(){
+    　　　　　　var that = this; //对象调用，将this 指为该对象
+    　　　　　　return function(){
+    　　　　　　　　return that.name;
+    　　　　　　};
+    　　　　}
+    　　};
+    　　alert(object.getNameFunc()());  // My Object；
+    };
+    
+</script>
+</html>
